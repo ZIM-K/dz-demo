@@ -7,5 +7,9 @@ spec:
    ports:
       - port: 5672
         protocol: TCP
+        name: amqp
+      - port: 15672
+        protocol: TCP
+        name: management
    selector:
-    components: rabbitmq
+    app: rabbitmq
