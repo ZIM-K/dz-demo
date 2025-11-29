@@ -7,13 +7,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: conv.test
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: conv-app-clusterip
-            port: 
-              number: 80
+    - host: conv.test
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: conv-app-clusterip
+                port:
+                  number: 80
