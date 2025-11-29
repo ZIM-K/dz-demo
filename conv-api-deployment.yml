@@ -26,12 +26,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: rabbitmq-secret
-              key: RABBITMQ_DEFAULT_USER
+              key: SEED_USERNAME
         - name: AMQP_PASSWORD
           valueFrom:
              secretKeyRef:
                name: rabbitmq-secret
-               key: RABBITMQ_DEFAULT_PASS
+               key: SEED_USER_PASSWORD
         - name: AMQP_EXCHANGE
           value: demo-exchange
         - name: AMQP_HOSTNAME
