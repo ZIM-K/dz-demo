@@ -6,18 +6,25 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      components: frontend-2
+      component: frontend-2
   template:
     metadata:
       labels:
-        components: frontend-2
+        component: frontend-2
     spec:
       containers:
-      - name: conv-app
-        image: antonlarichev/conv-app:1.2
-        ports:
-         - containerPort: 80
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - name: conv-app
+          image: antonlarichev/conv-app:1.2
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: convconfig
+              mountPath: /etc/convconfig 
+      volumes:
+        - name: convconfig
+          configMap:
+            name: conv-app-config
