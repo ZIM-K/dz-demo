@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: converter-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: converter-service
+  template:
+    metadata:
+      labels:
+        component: converter-service
+    spec:
+      containers:
+      - name: converter
+        image: antonlarichev/conv-service:1.0
+        ports:
+          - containerPort: 80
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "200m"
+        env:
+        - name: AMQP_USER
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-secret
+              key: SEED_USERNAME
+        - name: AMQP_PASSWORD
+          valueFrom:
+             secretKeyRef:
+               name: rabbitmq-secret
+               key: SEED_USER_PASSWORD
+        - name: AMQP_EXCHANGE
+          value: demo-exchange
+        - name: AMQP_HOSTNAME
+          value: rabbitmq-clusterip
+        - name: AMQP_QUEUE
+          value: converter

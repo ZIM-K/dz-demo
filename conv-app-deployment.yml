@@ -21,3 +21,10 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+          volumeMounts:
+            - name: convconfig
+              mountPath: /etc/convconfig 
+      volumes:
+        - name: convconfig
+          configMap:
+            name: conv-app-config
