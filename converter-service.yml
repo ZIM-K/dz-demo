@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: conv-app-clusterip
+  name: converter-clusterip
 spec:
   type: ClusterIP
   ports:
     - port: 80
       protocol: TCP
   selector:
-    component: frontend-2
+    component: converter-service
