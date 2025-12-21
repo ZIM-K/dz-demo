@@ -1,0 +1,10 @@
+app:
+  name: conv-app
+  image: antonlarichev/conv-app
+  version: v1.2
+  components: frontend-2
+  port: 80
+  replicas: 1
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

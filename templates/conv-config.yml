@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conv-app-config
+data:
+  key: {{ .Release.Name }}
+  name: {{ .Values.Name | default "default"| upper | quote }}
+  version: {{ .Chart.AppVersion | quote }}
+  date: {{ now | date "2006-01-02" | quote }}
